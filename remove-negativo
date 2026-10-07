@@ -1,0 +1,17 @@
+#lang racket
+(require rackunit)
+
+(define (remove-negativo lst)
+  (cond
+    [(empty? lst) lst]
+    [(< (first lst) 0) (remove-negativo (rest lst))]
+    [else
+     (cons (first lst) (remove-negativo (rest lst)))]))
+
+(define lista1 (list 5 8 -3 7 0 -4 -10))
+(define lista2 (list -2 6 4 -5 1))
+(define lista3 (list -7 -2 -4))
+
+(check-equal? (remove-negativo lista1) (list 5 8 7 0))
+(check-equal? (remove-negativo lista2) (list 6 4 1))
+(check-equal? (remove-negativo lista3) (list ))

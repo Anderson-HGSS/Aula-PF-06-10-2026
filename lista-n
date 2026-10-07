@@ -1,0 +1,17 @@
+#lang racket
+(require rackunit)
+
+(define (insere-fim lst val)
+  (cond
+    [(empty? lst) (list val)]
+    [else (cons (first lst) (insere-fim (rest lst) val))]))
+
+
+(define (lista-n num)
+  (cond
+    [(zero? num) (list )]
+    [else (insere-fim (lista-n (sub1 num)) num)]))
+
+(check-equal? (lista-n 3) (list 1 2 3))
+(check-equal? (lista-n 10) (list 1 2 3 4 5 6 7 8 9 10))
+(check-equal? (lista-n 0) (list ))

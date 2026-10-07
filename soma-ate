@@ -1,0 +1,12 @@
+#lang racket
+(require rackunit)
+
+(define (soma-ate num)
+  (cond
+    [(equal? num 0) 0]
+    [else (+ num (soma-ate (sub1 num)))]))
+
+(check-equal? (soma-ate 10) 55)
+(check-equal? (soma-ate 0) 0)
+(check-equal? (soma-ate 5) 15)
+(check-equal? (soma-ate 1) 1)
